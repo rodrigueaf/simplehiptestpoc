@@ -3,10 +3,8 @@ install:
   - gem install hiptest-publisher
 jobs:
   include:
-    - stage: test
-      name: "User acceptance tests"
-      script: mvn clean test
-      script: hiptest-publisher -c hiptest-publisher.conf --test-run-id=235722 --without=actionwords --push="target/cucumber-reports/Cucumber.json"
+    - script: mvn clean test
+    - script: hiptest-publisher -c hiptest-publisher.conf --test-run-id=235722 --without=actionwords --push="target/cucumber-reports/Cucumber.json"
     - stage: deploy
       install: skip
       script: skip
