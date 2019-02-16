@@ -1,0 +1,30 @@
+---
+- name: go to "p1" page
+  uid: 31defafb-ca5a-41cc-b9e2-2a977fa19e30
+  parameters:
+  - name: p1
+  body_hash: d41d8cd98f00b204e9800998ecf8427e
+- name: we have 2 menu links
+  uid: 9ff50140-f814-4126-a2f4-67598e5dc341
+  parameters: []
+  body_hash: d41d8cd98f00b204e9800998ecf8427e
+- name: we are on "p1" page
+  uid: 55cd0cbb-399e-4c51-a56f-7284f1d234f6
+  parameters:
+  - name: p1
+  body_hash: d41d8cd98f00b204e9800998ecf8427e
+- name: we click on "p1" link
+  uid: eba7323c-6538-4679-bf6c-c80a94089418
+  parameters:
+  - name: p1
+  body_hash: d41d8cd98f00b204e9800998ecf8427e
+- name: we go to "p1" page
+  uid: 2a893b3f-ba0d-4be5-9dbf-8fb75b7db73a
+  parameters:
+  - name: p1
+  body_hash: d41d8cd98f00b204e9800998ecf8427e
+- name: it shows "p1"
+  uid: 855ae574-fa1b-4d13-8458-1fb996c44180
+  parameters:
+  - name: p1
+  body_hash: d41d8cd98f00b204e9800998ecf8427e
