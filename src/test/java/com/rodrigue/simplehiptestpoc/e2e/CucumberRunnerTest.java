@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         strict = true,
         features = {"src/test/resources/features/simplepoc.feature"},
-        plugin = {"pretty", "html:target/site/cucumber"})
+        plugin = {"pretty", "json:target/cucumber-reports/Cucumber.json"},
+        monochrome = true)
 public class CucumberRunnerTest {
 }
