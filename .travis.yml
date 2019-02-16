@@ -1,6 +1,17 @@
 language: java
 install:
   - gem install hiptest-publisher
-script:
-- mvn clean test
-- hiptest-publisher -c hiptest-publisher.conf --test-run-id=235722 --without=actionwords --push="target/cucumber-reports/Cucumber.json"
+jobs:
+  include:
+    - stage: test
+      name: "User acceptance tests"
+      script: mvn clean test
+    - stage: push
+      name: "Push to Hiptest"
+       script: hiptest-publisher -c hiptest-publisher.conf --test-run-id=235722 --without=actionwords --push="target/cucumber-reports/Cucumber.json"
+    - stage: deploy
+      script: skip
+      deploy: &heroku
+        provider: heroku
+        api_key: 02fa123e-3206-47cf-bcfd-aa7bb61859a3
+        app: simplehiptestpoc
