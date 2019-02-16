@@ -5,11 +5,11 @@ jobs:
   include:
     - stage: test
       name: "User acceptance tests"
+      install: skip
       script: mvn clean test
-    - stage: push
-      name: "Push to Hiptest"
       script: hiptest-publisher -c hiptest-publisher.conf --test-run-id=235722 --without=actionwords --push="target/cucumber-reports/Cucumber.json"
     - stage: deploy
+      install: skip
       script: skip
       deploy: &heroku
         provider: heroku
