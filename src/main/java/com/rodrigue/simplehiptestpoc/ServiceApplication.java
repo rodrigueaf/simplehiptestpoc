@@ -15,6 +15,6 @@ public class ServiceApplication {
 
     @GetMapping("/")
     public String home(){
-        return "Welcome";
+        return "Welcome toto";
     }
 }
