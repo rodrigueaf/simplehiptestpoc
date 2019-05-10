@@ -14,8 +14,6 @@ script:
 jobs:
   include:
   - stage: deploy
-    install: skip
-    script: skip
     deploy:
       provider: heroku
       api_key: 02fa123e-3206-47cf-bcfd-aa7bb61859a3
