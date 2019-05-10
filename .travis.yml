@@ -6,12 +6,11 @@ addons:
     organization: rodrigueaf-github
     token:
       secure: "*********"
-
 script:
-- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+- mvn clean test
 - hiptest-publisher -c hiptest-publisher.conf --test-run-id=235722 --without=actionwords
   --push="target/cucumber-reports/Cucumber.json"
-
+- sonar-scanner
 jobs:
   include:
   - stage: deploy
