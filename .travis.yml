@@ -1,15 +1,27 @@
 language: java
 install:
-  - gem install hiptest-publisher
+- gem install hiptest-publisher
+addons:
+  sonarcloud:
+    organization: rodrigueaf-github
+    token:
+      secure: "*********"
+
 script:
-  - mvn clean test
-  - hiptest-publisher -c hiptest-publisher.conf --test-run-id=235722 --without=actionwords --push="target/cucumber-reports/Cucumber.json"
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+- hiptest-publisher -c hiptest-publisher.conf --test-run-id=235722 --without=actionwords
+  --push="target/cucumber-reports/Cucumber.json"
+
 jobs:
   include:
-    - stage: deploy
-      install: skip
-      script: skip
-      deploy: &heroku
-        provider: heroku
-        api_key: 02fa123e-3206-47cf-bcfd-aa7bb61859a3
-        app: simplehiptestpoc
+  - stage: deploy
+    install: skip
+    script: skip
+    deploy:
+      provider: heroku
+      api_key: 02fa123e-3206-47cf-bcfd-aa7bb61859a3
+      app: simplehiptestpoc
+# generate by (travis encrypt SOMEVAR="f33cdd9004299072b49fe1a5a0ae44b2cfde88e3" --add)
+env:
+  global:
+    secure: rBBKPNzBWtrQ0zJ41q3O0dc4ni0F3iJ0Y1IC3QxcrBenbBOsxBL/2R6PB8KrNhZMSb1no+9DQeh9NVyJpmvHWlIfK5sb9ZVgdOGMkIu3iJCQJ4imKDq+Oy7x5hojypXwLsdjugUSr9JbpG0UZ92HG8xnkC3eaDYSGvQchgd+Vc3fpQOgKBbi8VSurtCSBG9et+rfWzmfgCt6UF2jxIO2Cqawl0O14TMf9G02ugxDOSMJVL8EhJsPGtdExpsLDZJbVeJXzf9ROhhvuuowzzjLuFnLw4NnWKA2BGSM3wojOR/RwCKQRLfk+keS2NdrcRqVE3CyJC9cUmM8GUDZaEo6o19CBEonINP/iyXrWtvXVeZTaoa0movzPfbEYEI1tYfRj9JtQikwzZvEQSPlnkcv7L2/5AsR6+nm5qlEMJbrUi8KK3bcSSlZhWD6axAxsISH+xR95OBN/vqTVLlx1ZRZoBmTNN3GlrJGeFL3sOhmI3S5KteJO4HFqz+6ht3d7nx25e1xu2iCN2eJp1islzphbapKB4R0KlQeMtqr+QV8HBwTsneizElU782e9AOahd1Nghsh3f5Ka+aCmPwi7yhC38vetv7/E6yZ7/G5NkMeCpAE2vwA/U09flhfLo1OjaL1eGEo/A5VqFTqrJlHmBrkulA0co5SjNcORBWv9l591aE=
