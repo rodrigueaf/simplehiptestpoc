@@ -7,7 +7,7 @@ addons:
     token:
       secure: "*********"
 script:
-- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.login=b5059c43240c1ded5afb4e989ef8a47d0efd6e41
 - hiptest-publisher -c hiptest-publisher.conf --test-run-id=235722 --without=actionwords
   --push="target/cucumber-reports/Cucumber.json"
 jobs:
