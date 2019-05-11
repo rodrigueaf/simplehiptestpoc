@@ -5,13 +5,11 @@ addons:
   sonarcloud:
     organization: rodrigueaf-github
     token:
-      secure: "rBBKPNzBWtrQ0zJ41q3O0dc4ni0F3iJ0Y1IC3QxcrBenbBOsxBL/2R6PB8KrNhZMSb1no+9DQeh9NVyJpmvHWlIfK5sb9ZVgdOGMkIu3iJCQJ4imKDq+Oy7x5hojypXwLsdjugUSr9JbpG0UZ92HG8xnkC3eaDYSGvQchgd+Vc3fpQOgKBbi8VSurtCSBG9et+rfWzmfgCt6UF2jxIO2Cqawl0O14TMf9G02ugxDOSMJVL8EhJsPGtdExpsLDZJbVeJXzf9ROhhvuuowzzjLuFnLw4NnWKA2BGSM3wojOR/RwCKQRLfk+keS2NdrcRqVE3CyJC9cUmM8GUDZaEo6o19CBEonINP/iyXrWtvXVeZTaoa0movzPfbEYEI1tYfRj9JtQikwzZvEQSPlnkcv7L2/5AsR6+nm5qlEMJbrUi8KK3bcSSlZhWD6axAxsISH+xR95OBN/vqTVLlx1ZRZoBmTNN3GlrJGeFL3sOhmI3S5KteJO4HFqz+6ht3d7nx25e1xu2iCN2eJp1islzphbapKB4R0KlQeMtqr+QV8HBwTsneizElU782e9AOahd1Nghsh3f5Ka+aCmPwi7yhC38vetv7/E6yZ7/G5NkMeCpAE2vwA/U09flhfLo1OjaL1eGEo/A5VqFTqrJlHmBrkulA0co5SjNcORBWv9l591aE="
-      #secure: "*********"
+      secure: "*********"
 script:
-- mvn clean test
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
 - hiptest-publisher -c hiptest-publisher.conf --test-run-id=235722 --without=actionwords
   --push="target/cucumber-reports/Cucumber.json"
-- sonar-scanner
 jobs:
   include:
   - stage: deploy
